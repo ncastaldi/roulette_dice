@@ -7,8 +7,13 @@ function getRndInteger(min, max) {
 
 function rollDice() {
   /* VARIABLE DECLATRATIONS */
-  const yourService = ["Disney+", "Hulu", "Amazon Prime"];
+  
+  const stream_options = ["Netflix", "Amazon Prime Video", "Disney+", "HBO", "Hulu", "Vudu", "Crunchyroll", "CBS All Access", "Apple TV+"];
+  
+  const logo = ["images/netflix.png", "images/prime.png", "images/disney.jpg"];
+
   const type = ["movie", "tv show"];
+
   const category = [
     "Action & Adventure",
     "Children & Family",
@@ -23,67 +28,61 @@ function rollDice() {
     "Sports",
     "Thrillers",
   ];
-  var rank = ["1", "2", "3", "4", "5", "6"];
-  var serviceSelection = -1;
+  
+  var rank = -1;
   var typeSelection = -1;
   var categorySelection = -1;
-  var rankSelection = -1;
   var randNum = -1;
 
-  /* MAKE SELECTIONS */
-  randNum = getRndInteger(0, yourService.length);
-  serviceSelection = yourService[randNum];
+  /* Select service to stream from */
+  randNum = getRndInteger(0, stream_options.length);
+  serviceSelection = stream_options[randNum];
   console.log(serviceSelection);
 
+  /* Display service logo */
+  document.getElementById("logo_target").src = (logo[randNum]);
+
+  /* Select type of media to watch */
   randNum = getRndInteger(0, type.length);
   typeSelection = type[randNum];
   console.log(typeSelection);
 
+  /* Select media category */
   randNum = getRndInteger(0, category.length);
   categorySelection = category[randNum];
   console.log(categorySelection);
 
-  randNum = getRndInteger(0, rank.length);
-  rankSelection = rank[randNum];
-  console.log(rankSelection);
+  /* Select list item rank */
+  randNum = getRndInteger(1, 10);
+  rank = randNum;
+  console.log(rank);  
 
-  switch (rankSelection) {
+  /* Convert rank from numbers to words */
+  switch (rank) {
     case "1":
-      rankSelection = "first";
+      rank = "first";
       break;
     case "2":
-      rankSelection = "second";
+      rank = "second";
       break;
     case "3":
-      rankSelection = "third";
+      rank = "third";
       break;
     case "4":
-      rankSelection = "fourth";
+      rank = "fourth";
       break;
     case "5":
-      rankSelection = "fifth";
+      rank = "fifth";
       break;
     case "6":
-      rankSelection = "sixth";
+      rank = "sixth";
       break;
   }
 
   /* RETURN THE RESULTS */
-/*   alert(
-    "Congratulations! You're watching the " +
-      rankSelection +
-      " " +
-      typeSelection +
-      " in " +
-      serviceSelection +
-      "'s " +
-      categorySelection +
-      " category."
-  ); */
-
   return (
     "Congratulations! You're watching the " +
-    rankSelection +
+    rank +
     " " +
     typeSelection +
     " in " +
